@@ -230,8 +230,8 @@ Dokumenty są celowo krótkie (30–50 linii każdy), realistyczne i w języku p
 | Implementacja TDD | Dzień 2–3 | `app/` na branchu uczestnika |
 | Testy manualne (Playwright) | Dzień 3 | Brak mocków — LLM na żywo |
 | Debugging | Dzień 3 | Live |
-| Demo | Dzień 3 finisa | Prezentacja uczestnika |
+| Demo | Dzień 3 finał | Prezentacja uczestnika |
 
 ---
 
-*Specyfikacja wersja 1.0 — bazuje na sekcji "Aplikacja demo" z `docs/planning/course-demo-app-process.md` (kanon kursu).*
+*Specyfikacja wersja 1.0 — proces kursu opisany w `course-materials/references/master-process.md`.*

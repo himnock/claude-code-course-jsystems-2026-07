@@ -1,8 +1,7 @@
 # Mapa procesu — jak pracujemy przez 3 dni
 
 > Kręgosłup kursu. Każdy moduł agendy mapuje się na jeden krok. Pokazać na
-> starcie Dnia 1 i odświeżać każdego ranka. Źródło kanonu:
-> `docs/planning/course-demo-app-process.md`. Agenda:
+> starcie Dnia 1 i odświeżać każdego ranka. Agenda:
 > `course-materials/course-agenda.md`.
 
 ## Zasady nadrzędne
