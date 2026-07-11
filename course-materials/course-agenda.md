@@ -19,6 +19,7 @@
 - Poznajmy się – doświadczenia uczestników
 - AI w programowaniu 2026: agenci, a nie tylko asystenci
 - Trendy i case studies
+- Narzędzia i harnessy: Claude Code, Codex, OpenCode, Antigravity
 - Korzyści vs ryzyka (halucynacje, context rot, koszty)
 - Weryfikacja środowiska: CLI, Desktop, IDE, Node.js, Git
 - Pierwsze uruchomienie Claude Code
@@ -33,10 +34,10 @@
 - Desktop App (chat z kodem, Hyper-V sandbox)
 - Claude Web (remote environments)
 - Kiedy który tryb wybrać
-- Kluczowe komendy: `/resume`, `/compact`, `/context`, `/model`, `/permissions`
-- Modele Opus/Sonnet/Haiku oraz alternatywy (np. GLM-5) – kiedy który <!-- TODO-VERIFY: aktualne nazwy i dostępność modeli -->
+- Kluczowe komendy: `/resume`, `/compact`, `/context`, `/model`, `/permissions` (i więcej: `/init`, `/plan`, `/code-review`, `/memory`...)
+- Modele: Claude Fable 5 / Opus 4.8 / Sonnet 5 / Haiku 4.5 oraz alternatywy (GPT-5.6, Grok 4.5, GLM-5.2) – kiedy który; ranking LMArena na żywo
 - Zarządzanie kontekstem: okno, kompresja, context rot
-- Uprawnienia i tryby bezpieczeństwa (allowedTools, denyTools, Sandbox)
+- Uprawnienia i tryby pracy (default / accept edits / plan / auto / bypass; reguły allow/ask/deny; Sandbox)
 
 **Cel:** Swobodna praca w każdym trybie Claude Code
 
@@ -64,6 +65,8 @@
 - Agent inicjalizuje template Vercel AI
 
 **Cel:** Plan aplikacji AI Chat i uruchomiony scaffolding
+
+> Plan minimum dnia 1: PRD (i start ADR, jeśli czas pozwoli). ADR i inicjalizację zwykle kończymy rano w dniu 2 – tempo dostosowujemy do grupy.
 
 ---
 
@@ -166,7 +169,7 @@
 
 - Claude Web remote environments (secrets, starting script, integracja z GitHub)
 - Headless `-p` w GitHub Actions
-- Koszty i optymalizacja (tokeny, modele, cache) <!-- TODO-VERIFY: aktualne ceny i limity -->
+- Koszty i optymalizacja (tokeny, modele, cache)
 - *Adaptacja ankieta:* większość uczestników korzysta z Jenkins – pokazany wariant Jenkins
 
 **Cel:** Agent w chmurze oraz w pipeline CI/CD
@@ -178,7 +181,7 @@
 - Demo projektów uczestników
 - Retrospektywa
 - Best practices zespołowe
-- Tematy zaawansowane, modele lokalne (np. Gemma) <!-- TODO-VERIFY: aktualne nazwy modeli lokalnych -->
+- Tematy zaawansowane, modele lokalne (Ollama, vLLM; np. Gemma)
 - Zasoby do dalszej nauki
 
 **Cel:** Samodzielność po kursie
