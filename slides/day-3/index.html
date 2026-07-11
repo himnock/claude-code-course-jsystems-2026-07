@@ -581,6 +581,42 @@ claude
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
 
+<!-- ===== SLAJD 14a: WORKFLOWS - TAKSONOMIA AUTOMATYZACJI ===== -->
+<section class="slide">
+  <div class="slide-body">
+    <div class="kicker">3.1 - taksonomia automatyzacji</div>
+    <h2>Workflow - cztery mechanizmy</h2>
+    <p>Workflow to szerokie pojęcie: może być batchem sub-agentów, hookiem, pętlą celu albo zadaniem cyklicznym - wybierz mechanizm do charakteru pracy.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">Batch scripts</div>
+        <p>Skrypt orkiestruje wielu sub-agentów naraz, np. CSV z listą zadań - każdy wiersz to osobne uruchomienie z własnym kontekstem.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Hooks</div>
+        <p>Deterministyczne zdarzenia: agent reaguje na moment, np. po zapisie pliku lub przed committem - powtarzalnie i bez ręcznego startu.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Goals / loops</div>
+        <p>Agent dostaje cel wysokiego poziomu, sam planuje kroki i działa w pętli aż cel zostanie osiągnięty - najbardziej autonomiczny wariant.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Schedules / cron</div>
+        <p>Zadanie cykliczne uruchamiane bez ręcznego startu - np. codzienny review zmian albo nocne odpalenie batcha.</p>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>Skalowanie:</strong> to kontrolowany batch i limit współbieżności, nie bezwarunkowe uruchomienie setek agentów naraz. Limituj też głębokość zagnieżdżenia sub-agentów.
+    </div>
+  </div>
+  <div class="trener-notes">
+    <div class="tn-section"><h4>Co mówić</h4><ul><li>Workflow to kategoria, nie jedna komenda - pokaż cztery warianty obok siebie</li><li>Batch = wielu agentów jednorazowo, hook = reakcja na zdarzenie, goal = pętla autonomiczna, schedule = cyklicznie</li><li>Skalowanie NIE polega na odpaleniu setek agentów naraz - batch + limit współbieżności + limit głębokości</li></ul></div>
+    <div class="tn-section"><h4>Co robić</h4><ul><li>Pokaż przykład CSV z listą zadań jako wejście do batcha</li><li>Nawiąż do hooków z dnia 2 (deterministyczne zdarzenia, permissions = prawo)</li></ul></div>
+    <div class="tn-section"><h4>Co sprawdzić</h4><ul><li>Czy uczestnicy widzą różnicę między goal/loop a zwykłym batchem</li></ul></div>
+  </div>
+  <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
+</section>
+
 <!-- ===== SLAJD 15: TEZA ===== -->
 <section class="slide">
   <div class="slide-body">
@@ -1085,38 +1121,46 @@ npx playwright test e2e/chat-flow.spec.ts
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
 
-<!-- ===== SLAJD 32: CLAUDE WEB REMOTE ENVIRONMENTS ===== -->
+<!-- ===== SLAJD 32: CLOUD AGENTS - KATEGORIA ===== -->
 <section class="slide">
   <div class="slide-body">
     <div class="kicker">3.3 - chmura</div>
-    <h2>Claude Web - remote environments</h2>
-    <p>Claude Web oferuje zdalne środowiska (remote environments) - uruchamiasz Claude Code w chmurze bez instalacji lokalnej. Idealne dla pracy zespołowej i CI/CD.</p>
+    <h2>Cloud agents - kategoria, nie jeden produkt</h2>
+    <p>Cloud agent to kategoria, nie pojedyncze narzędzie. Claude Code Web (remote environments), Codex Web, Cursor Agents i GitHub Copilot Agents różnią się integracją, izolacją i modelem zatwierdzania zmian.</p>
     <div class="cards">
       <div class="card">
-        <div class="card-title">Sekrety</div>
-        <ul class="feature-list">
-          <li>Zmienne środowiskowe konfigurowane w panelu</li>
-          <li>Klucze API przechowywane bezpiecznie</li>
-          <li>Dostęp do prywatnych repozytoriów GitHub</li>
-        </ul>
+        <div class="card-title">Claude Code Web</div>
+        <p>Remote environments w chmurze. Starting script przygotowuje środowisko, integracja z GitHub, praca bez lokalnego checkout - szczegóły na kolejnym slajdzie.</p>
       </div>
-      <div class="card amber">
-        <div class="card-title">Starting script</div>
-        <ul class="feature-list">
-          <li>Skrypt uruchamiany przy starcie środowiska</li>
-          <li>Instalacja zależności, konfiguracja narzędzi</li>
-          <li>Może klonować repo i przygotować projekt</li>
-        </ul>
+      <div class="card">
+        <div class="card-title">Codex Web</div>
+        <p>Chmurowy agent OpenAI. Wspólna pula quota agentic z innymi funkcjami (Work, Excel, Workspace-Agents) w oknie 5-godzinnym - mocne użycie jednej zmniejsza zapas innych.</p>
       </div>
-      <div class="card ok">
-        <div class="card-title">Integracja z GitHub</div>
-        <ul class="feature-list">
-          <li>Auto-klonowanie repozytorium</li>
-          <li>Tworzenie branchy i PR z poziomu chmury</li>
-          <li>Praca na kodzie bez lokalnego checkout</li>
-        </ul>
+      <div class="card">
+        <div class="card-title">Cursor Agents</div>
+        <p>Agenty wbudowane w edytor - działają w kontekście Twojego repo i sesji edytora, zatwierdzanie zmian w stylu IDE.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Copilot Agents</div>
+        <p>Agenty GitHuba zintegrowane z PR/issue i workflow repozytorium - inny model izolacji i zatwierdzania niż Cursor czy Claude Web.</p>
       </div>
     </div>
+    <hr class="sep">
+    <div class="cards">
+      <div class="card amber">
+        <div class="card-title">Delegacja z telefonu</div>
+        <p>Z telefonu możesz delegować pracę do chmury albo zdalnie sterować lokalnym agentem. <strong>Routines</strong> i <strong>schedules</strong> uruchamiają pracę bez ręcznego startu.</p>
+      </div>
+      <div class="card warn">
+        <div class="card-title">Agent 24/7 na VPS</div>
+        <p>Agent na VPS działa długo i autonomicznie, więc potrzebuje sandboxa, minimalnych sekretów, limitów zasobów i akcji oraz obowiązkowego review zanim cokolwiek trafi do produkcji.</p>
+      </div>
+    </div>
+  </div>
+  <div class="trener-notes">
+    <div class="tn-section"><h4>Co mówić</h4><ul><li>Cloud agent to kategoria - nie myśl "Claude Web albo nic", porównaj opcje</li><li>Różnice: integracja (IDE vs chmura vs repo), izolacja (sandbox vs kontekst edytora), model zatwierdzania (auto-PR vs review)</li><li>Quota agentic OpenAI jest współdzielona w oknie 5h - pamiętaj przy delegacji mobilnej</li><li>Agent 24/7 na VPS = inna kategoria ryzyka niż jednorazowe uruchomienie</li></ul></div>
+    <div class="tn-section"><h4>Co robić</h4><ul><li>Pokaż że kolejny slajd wchodzi w szczegóły Claude Web - Starting script, GitHub</li><li>Wspomnij routines/schedules jako sposób na pracę bez ręcznego startu</li></ul></div>
+    <div class="tn-section"><h4>Co sprawdzić</h4><ul><li>Czy uczestnicy rozumieją że "cloud agent" to kategoria wyboru, nie jeden produkt</li></ul></div>
   </div>
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
@@ -1484,13 +1528,23 @@ pipeline {
       </div>
       <div class="card amber">
         <div class="card-title">Modele lokalne</div>
-        <p>Modele uruchamiane lokalnie (na własnym sprzęcie) dają prywatność i brak kosztów krańcowych, ale wymagają odpowiedniego hardware-u.</p>
-        <p><span class="todo-marker">[TODO-VERIFY: sprawdzić aktualne wymagania/wydajność modelu lokalnego]</span></p>
-        <p>Przykłady kierunków: modele z rodziny Gemma <span class="todo-marker">[TODO-VERIFY: sprawdzić aktualne nazwy i wersje dostępnych modeli lokalnych]</span>, Llama, Mistral. Dokładne nazwy, wydajność i wymagania sprzętowe zmieniają się szybko - zweryfikuj przed użyciem w produkcji.</p>
+        <p>Trzy główne runtimes - wybór zależy od sprzętu i obciążenia:</p>
+        <ul class="feature-list">
+          <li><strong>Ollama</strong> - najprostszy start lokalny, dobra na maszynę deweloperską i szybkie eksperymenty</li>
+          <li><strong>vLLM</strong> - skaluje współbieżność, gdy jeden model obsługuje wielu użytkowników lub agentów naraz</li>
+          <li><strong>LocalAI</strong> - wystawia API zgodne z OpenAI, drop-in zamiennik dla kodu pisanego pod chmurę</li>
+        </ul>
+        <div class="note-box">
+          Lokalny model umożliwia pracę w środowisku air-gapped, ale modele, zależności i dokumentację trzeba dostarczyć wcześniej - to nie jest zero-setup.
+        </div>
       </div>
     </div>
     <hr class="sep">
     <p class="subtitle">To są kierunki rozwoju po kursie. Wybierz jeden i zgłębiaj go.</p>
+  </div>
+  <div class="trener-notes">
+    <div class="tn-section"><h4>Co mówić</h4><ul><li>Modele lokalne = prywatność i brak kosztów krańcowych, ale hardware ma znaczenie</li><li>Ollama = start, vLLM = obciążenie/współbieżność, LocalAI = zgodność API z OpenAI</li><li>Air-gapped: modele, zależności i dokumentację dostarcz wcześniej - to nie zero-setup</li></ul></div>
+    <div class="tn-section"><h4>Krajobraz zmienia się szybko</h4><ul><li>Weryfikuj dostępność narzędzi przed każdym terminem kursu - to nie są fakty do zapamiętania, tylko sygnał że teren się rusza</li><li>Google wycofał Gemini CLI dla Pro/Ultra/free na rzecz nowszego Antigravity CLI (oparte na Go, część platformy Antigravity)</li><li>GLM-5.2 (Zhipu/Z.ai): MIT, 1M kontekstu, tuning pod agentic coding; Z.ai wydał ZCode - darmowe desktopowe środowisko dla GLM-5.2 celujące w Cursor/Claude Code/Copilot</li><li>JetBrains AI Assistant: agent picker wtyczkowy (Copilot, Claude, Codex); "AI for Teams" łączy narzędzia przez MCP i agentów przez ACP</li></ul></div>
   </div>
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
