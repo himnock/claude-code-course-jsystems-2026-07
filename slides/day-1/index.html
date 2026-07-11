@@ -269,12 +269,9 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
       <div>Tryb: zdalny</div>
     </div>
     <div class="break-badge">
-      <div class="bb-label">Harmonogram dnia 09:00 - 16:00 (godziny orientacyjne)</div>
-      <div class="bb-items">
-        <span>10:30 Przerwa 15 min</span>
-        <span>13:00 Obiad 30 min</span>
-        <span>14:45 Przerwa 10 min (opcjonalna)</span>
-        <span>16:00 Koniec</span>
+      <div class="bb-label" data-schedule-label>Harmonogram dnia (godziny orientacyjne)</div>
+      <div class="bb-items" data-schedule-items>
+        <span>wypelniane z konfiguracji SCHEDULE</span>
       </div>
     </div>
   </div>
@@ -304,14 +301,14 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
     <div class="kicker">Dzień 1</div>
     <h2>Agenda dnia</h2>
     <div class="timeline">
-      <div class="timeline-item"><div class="timeline-time">09:00</div><div><strong>Moduł 1.1</strong> Wprowadzenie i konfiguracja - doświadczenia, trendy, narzędzia i harnessy, weryfikacja środowiska, pierwsze uruchomienie</div></div>
-      <div class="timeline-item break"><div class="timeline-time">10:30</div><div><strong>Przerwa</strong> 15 minut</div></div>
-      <div class="timeline-item"><div class="timeline-time">10:45</div><div><strong>Moduł 1.2</strong> Tryby pracy i kluczowe funkcje - CLI, Desktop, Web, komendy, modele, kontekst, uprawnienia</div></div>
-      <div class="timeline-item break"><div class="timeline-time">13:00</div><div><strong>Obiad</strong> 30 minut</div></div>
-      <div class="timeline-item"><div class="timeline-time">13:30</div><div><strong>Moduł 1.3</strong> Context Engineering i konfiguracja agenta - CLAUDE.md, AGENTS.md, struktura kontekstu</div></div>
-      <div class="timeline-item break"><div class="timeline-time">14:45</div><div><strong>Przerwa</strong> 10 minut (opcjonalna - jeśli grupa potrzebuje)</div></div>
-      <div class="timeline-item"><div class="timeline-time">~14:55</div><div><strong>Moduł 1.4</strong> Projekt AI Chat z Vercel AI SDK - PRD, architektura, ADR, inicjalizacja template</div></div>
-      <div class="timeline-item"><div class="timeline-time">16:00</div><div><strong>Koniec dnia 1</strong></div></div>
+      <div class="timeline-item"><div class="timeline-time" data-mod-time="0">09:00</div><div><strong>Moduł 1.1</strong> Wprowadzenie i konfiguracja - doświadczenia, trendy, narzędzia i harnessy, weryfikacja środowiska, pierwsze uruchomienie</div></div>
+      <div class="timeline-item break"><div class="timeline-time" data-break-time="0">10:30</div><div data-break-label="0"><strong>Przerwa</strong> 15 minut</div></div>
+      <div class="timeline-item"><div class="timeline-time" data-mod-time="1">10:45</div><div><strong>Moduł 1.2</strong> Tryby pracy i kluczowe funkcje - CLI, Desktop, Web, komendy, modele, kontekst, uprawnienia</div></div>
+      <div class="timeline-item break"><div class="timeline-time" data-break-time="1">13:00</div><div data-break-label="1"><strong>Obiad</strong> 30 minut</div></div>
+      <div class="timeline-item"><div class="timeline-time" data-mod-time="2">13:30</div><div><strong>Moduł 1.3</strong> Context Engineering i konfiguracja agenta - CLAUDE.md, AGENTS.md, struktura kontekstu</div></div>
+      <div class="timeline-item break"><div class="timeline-time" data-break-time="2">14:45</div><div data-break-label="2"><strong>Przerwa</strong> 10 minut (opcjonalna - jeśli grupa potrzebuje)</div></div>
+      <div class="timeline-item"><div class="timeline-time" data-mod-time="3">~14:55</div><div><strong>Moduł 1.4</strong> Projekt AI Chat z Vercel AI SDK - PRD, architektura, ADR, inicjalizacja template</div></div>
+      <div class="timeline-item"><div class="timeline-time" data-end-time>16:00</div><div><strong>Koniec dnia 1</strong></div></div>
     </div>
     <div class="note-box" style="margin-top:1rem"><strong>Cel dnia:</strong> gotowe środowisko, skonfigurowany agent, PRD aplikacji AI Chat. Plan minimum: dojść do ADR - dokończymy go rano w dniu 2. Godziny są orientacyjne - pracujemy w tempie grupy.</div>
   </div>
@@ -395,7 +392,7 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
   <div class="slide-body title-body">
     <div class="kicker">Moduł 1.1</div>
     <h1>Wprowadzenie<br>i konfiguracja</h1>
-    <div class="subtitle">09:00 - 10:30</div>
+    <div class="subtitle" data-mod-range="0">09:00 - 10:30</div>
     <div class="title-meta">
       <div>Cel: gotowe środowisko</div>
     </div>
@@ -788,7 +785,7 @@ claude</div>
   <div class="slide-body title-body">
     <div class="kicker">Moduł 1.2</div>
     <h1>Tryby pracy<br>i kluczowe funkcje</h1>
-    <div class="subtitle">10:45 - 13:00</div>
+    <div class="subtitle" data-mod-range="1">10:45 - 13:00</div>
     <div class="title-meta">
       <div>Cel: swobodna praca w każdym trybie</div>
     </div>
@@ -1204,7 +1201,7 @@ claude --dangerously-skip-permissions</div>
   <div class="slide-body title-body">
     <div class="kicker">Moduł 1.3</div>
     <h1>Context Engineering<br>i konfiguracja agenta</h1>
-    <div class="subtitle">13:30 - 14:45</div>
+    <div class="subtitle" data-mod-range="2">13:30 - 14:45</div>
     <div class="title-meta">
       <div>Cel: skonfigurowany agent</div>
     </div>
@@ -1429,7 +1426,7 @@ TypeScript, Next.js, Tailwind CSS, PostgreSQL
   <div class="slide-body title-body">
     <div class="kicker">Moduł 1.4</div>
     <h1>Projekt kursowy<br>AI Chat z Vercel AI SDK</h1>
-    <div class="subtitle">14:55 - 16:00</div>
+    <div class="subtitle" data-mod-range="3">14:55 - 16:00</div>
     <div class="title-meta">
       <div>Cel: plan aplikacji AI Chat</div>
     </div>
@@ -1815,12 +1812,44 @@ TypeScript, Next.js, Tailwind CSS, PostgreSQL
 </div><!-- /deck -->
 
 <script>
-// KONFIGURACJA PRZERW - edytuj godziny tutaj
-const BREAKS=[
- ["10:30","Przerwa 15 minut","Wracamy o 10:45"],
- ["13:00","Obiad 30 minut","Wracamy o 13:30"],
- ["14:45","Przerwa 10 minut (opcjonalna)","Tylko jesli grupa potrzebuje"]
-];
+// ============================================================
+// KONFIGURACJA HARMONOGRAMU - JEDYNE zrodlo prawdy dla godzin.
+// Zmien godziny TUTAJ - slajd tytulowy, agenda, podtytuly modulow
+// i alarmy przerw zaktualizuja sie same.
+// ============================================================
+const SCHEDULE={
+ start:"09:00",
+ end:"16:00",
+ breaks:[
+  {time:"10:30",dur:15,label:"Przerwa"},
+  {time:"13:00",dur:30,label:"Obiad"},
+  {time:"14:45",dur:10,label:"Przerwa",optional:true}
+ ]
+};
+
+function addMin(hm,m){const[h,mi]=hm.split(':').map(Number);const t=h*60+mi+m;return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');}
+function modStart(k){return k===0?SCHEDULE.start:addMin(SCHEDULE.breaks[k-1].time,SCHEDULE.breaks[k-1].dur);}
+function modEnd(k){return k<SCHEDULE.breaks.length?SCHEDULE.breaks[k].time:SCHEDULE.end;}
+
+// Alarmy przerw (banner + dzwiek) - wyliczane z SCHEDULE
+const BREAKS=SCHEDULE.breaks.map(b=>[
+ b.time,
+ b.label+" "+b.dur+" minut"+(b.optional?" (opcjonalna)":""),
+ b.optional?"Tylko jesli grupa potrzebuje":"Wracamy o "+addMin(b.time,b.dur)
+]);
+
+// Wypelnia godziny na slajdach z SCHEDULE (elementy z atrybutami data-*)
+function fillSchedule(){
+ const lbl=document.querySelector('[data-schedule-label]');
+ if(lbl)lbl.textContent='Harmonogram dnia '+SCHEDULE.start+' - '+SCHEDULE.end+' (godziny orientacyjne)';
+ const items=document.querySelector('[data-schedule-items]');
+ if(items)items.innerHTML=SCHEDULE.breaks.map(b=>'<span>'+b.time+' '+b.label+' '+b.dur+' min'+(b.optional?' (opcjonalna)':'')+'</span>').join('')+'<span>'+SCHEDULE.end+' Koniec</span>';
+ document.querySelectorAll('[data-break-time]').forEach(el=>{el.textContent=SCHEDULE.breaks[+el.dataset.breakTime].time;});
+ document.querySelectorAll('[data-break-label]').forEach(el=>{const b=SCHEDULE.breaks[+el.dataset.breakLabel];el.innerHTML='<strong>'+b.label+'</strong> '+b.dur+' minut'+(b.optional?' (opcjonalna - jeśli grupa potrzebuje)':'');});
+ document.querySelectorAll('[data-mod-time]').forEach(el=>{const k=+el.dataset.modTime;el.textContent=(k>0&&SCHEDULE.breaks[k-1].optional?'~':'')+modStart(k);});
+ document.querySelectorAll('[data-mod-range]').forEach(el=>{const k=+el.dataset.modRange;el.textContent=(k>0&&SCHEDULE.breaks[k-1].optional?'~':'')+modStart(k)+' - '+modEnd(k);});
+ document.querySelectorAll('[data-end-time]').forEach(el=>{el.textContent=SCHEDULE.end;});
+}
 
 const S=document.querySelectorAll('.slide');
 let i=0;
@@ -1922,6 +1951,7 @@ function tick(){
  });
 }
 
+fillSchedule();
 tick();
 setInterval(tick,15000);
 show(0);
