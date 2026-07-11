@@ -213,7 +213,7 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
 <body>
 
 <div id="hud"><div id="bar"></div></div>
-<div id="num">1/44</div>
+<div id="num">1/46</div>
 <div id="clock">clock --:--</div>
 <button id="prev" class="nav-arrow nav-left">&lsaquo;</button>
 <button id="next" class="nav-arrow nav-right">&rsaquo;</button>
@@ -462,10 +462,71 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
       <div class="card ok"><div class="card-title">TDD z agentem</div>
         <p>Agent pisze testy PRZED implementacją. Testuje manualnie przez Playwright/Chrome DevTools. <strong>Nic nie jest mockowane</strong> - LLM testowany na żywo.</p>
       </div>
-      <div class="card warn"><div class="card-title">Praktyczne case studies</div>
-        <p><span class="todo-marker">[TODO-VERIFY: dodać aktualne case studies z 2026 - konkretne firmy, projekty, metryki]</span></p>
+      <div class="card warn"><div class="card-title">Krajobraz 2026</div>
+        <ul class="feature-list">
+          <li><strong>OpenAI</strong> - GPT-5.6 Sol/Terra/Luna, ChatGPT Work, Codex</li>
+          <li><strong>Anthropic</strong> - Claude Fable 5 (redeploy 01.07)</li>
+          <li><strong>SpaceXAI+Cursor</strong> - Grok 4.5 (niedostępny w UE)</li>
+          <li><strong>Z.ai</strong> - GLM-5.2 + ZCode (1M kontekst, MIT)</li>
+          <li><strong>Google</strong> - Antigravity CLI (zastąpił Gemini CLI)</li>
+        </ul>
       </div>
     </div>
+  </div>
+  <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
+</section>
+
+<!-- ============ SLIDE 8a: AGENTCI ASYNCHRONICZNI ============ -->
+<section class="slide">
+  <div class="slide-body">
+    <div class="kicker">Moduł 1.1 | Trendy 2026</div>
+    <h2>Agenci asynchroniczni: chmura i mobilność</h2>
+    <div class="cards">
+      <div class="card amber"><div class="card-title">Delegowanie w tle</div>
+        <p>Agenci stają się asynchroniczni: delegujesz zadanie w chmurze lub z telefonu i odbierasz gotowy PR później. Nie blokujesz terminala, nie czekasz na odpowiedź.</p>
+      </div>
+      <div class="card warn"><div class="card-title">Agent 24/7 w chmurze</div>
+        <p>Agent działający ciągle na VPS lub w kontenerze zwiększa autonomię, ale wymaga <strong>izolacji, limitów i przeglądu zmian przed produkcją</strong>. Bez nadzoru może narobić szkód.</p>
+      </div>
+      <div class="card ok"><div class="card-title">Z telefonu</div>
+        <p>Delegujesz zadanie z aplikacji mobilnej, agent pracuje w chmurze na Twoim repozytorium. Odbierasz gotowy pull request, gdy jesteś z powrotem przy komputerze.</p>
+      </div>
+      <div class="card"><div class="card-title">Implikacja dla zespołu</div>
+        <p>Asynchroniczność zmienia tryb pracy: z edytora w czasie rzeczywistym na <strong>kolejkę zadań</strong> i code review gotowych wyników. Nadzór staje się kluczowy.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
+</section>
+
+<!-- ============ SLIDE 8b: MULTIMODALNOŚĆ - SCREENSHOTY I HTML ============ -->
+<section class="slide">
+  <div class="slide-body">
+    <div class="kicker">Moduł 1.1 | Trendy 2026</div>
+    <h2>Multimodalność: screenshoty i HTML jako warstwa prezentacji</h2>
+    <div class="two-col">
+      <div>
+        <h3 class="accent2">Screenshot jako kontekst</h3>
+        <div class="card ok"><p>Screenshot potrafi przekazać modelowi <strong>układ, kolory i treść</strong> taniej niż długi opis tekstowy.</p>
+        <ul class="feature-list" style="margin-top:.4rem">
+          <li>Jeden obraz zastępuje akapit opisu UI</li>
+          <li>Model widzi layout, a nie tylko tekst</li>
+          <li>Kompresja kontekstu: obraz &gt; tysiące słów</li>
+          <li>Przydatne przy debugowaniu UI i analizie błędów wizualnych</li>
+        </ul></div>
+      </div>
+      <div>
+        <h3 class="accent">HTML z Markdown</h3>
+        <div class="card amber"><p>Markdown zostaje <strong>formatem źródłowym</strong>, a agent może wygenerować z niego czytelny, interaktywny HTML.</p>
+        <ul class="feature-list" style="margin-top:.4rem">
+          <li>PRD, ADR, plan - czytelne w przeglądarce</li>
+          <li>Interaktywne diagramy zamiast statycznego tekstu</li>
+          <li>Źródło w git (Markdown), prezentacja w HTML</li>
+          <li>Dokumentacja żyje razem z kodem</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="note-box" style="margin-top:1rem"><strong>Na tym kursie:</strong> PRD i ADR piszemy w Markdown, a ta prezentacja jest generowanym HTML-em. Zobaczysz ten wzorzec wielokrotnie.</div>
   </div>
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
@@ -521,7 +582,13 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
         <ul class="feature-list">
           <li><strong>Codex</strong> - agent CLI od OpenAI</li>
           <li><strong>OpenCode</strong> - open source, wielu dostawców</li>
-          <li><strong>Antigravity</strong> - eksperymentalne</li>
+          <li><strong>Antigravity</strong> - platforma agentowa Google (zastąpiła Gemini CLI 18.06)</li>
+        </ul>
+      </div>
+      <div class="card"><div class="card-title">ACP i tryb offline</div>
+        <ul class="feature-list">
+          <li><strong>ACP</strong> - pozwala uruchomić Claude Code, Codex lub OpenCode wewnątrz IDE jako ten sam agent CLI</li>
+          <li><strong>Air-gapped</strong> - Zed i OpenCode mogą pracować z lokalnym modelem bez chmury</li>
         </ul>
       </div>
       <div class="card"><div class="card-title">Edytory</div>
@@ -879,7 +946,7 @@ cat error.log | claude -p "wyjaśnij błąd"</div>
     <div class="cards">
       <div class="card warn"><div class="card-title">Opus</div>
         <p><strong>Najmocniejszy model</strong>. Najlepsza jakość rozumowania, najdroższy, najwolniejszy.</p>
-        <p style="margin-top:.4rem;font-size:.85rem"><span class="todo-marker">[TODO-VERIFY: aktualna nazwa kodu, cena za token, limity]</span></p>
+        <p style="margin-top:.4rem;font-size:.85rem">Flagowy model 2026: <strong>Claude Fable 5</strong> (premiera 09.06, redeploy 01.07). Od 12.07: $10/M wejście, $50/M wyjście (prepaid).</p>
         <p style="margin-top:.4rem"><span class="badge red">Złożone zadania</span></p>
       </div>
       <div class="card ok"><div class="card-title">Sonnet</div>
@@ -892,9 +959,9 @@ cat error.log | claude -p "wyjaśnij błąd"</div>
         <p style="margin-top:.4rem;font-size:.85rem"><span class="todo-marker">[TODO-VERIFY: aktualna nazwa kodu, cena za token]</span></p>
         <p style="margin-top:.4rem"><span class="badge blue">Proste zadania</span></p>
       </div>
-      <div class="card amber"><div class="card-title">GLM-5 (alternatywa)</div>
+      <div class="card amber"><div class="card-title">GLM-5.2 (alternatywa)</div>
         <p><strong>Alternatywa przez OpenRouter</strong>. Model od innego dostawcy, dostępny przez ten sam klucz API.</p>
-        <p style="margin-top:.4rem;font-size:.85rem"><span class="todo-marker">[TODO-VERIFY: dostępność GLM-5 przez OpenRouter, możliwości, ceny]</span></p>
+        <p style="margin-top:.4rem;font-size:.85rem">GLM-5.2: premiera 13.06, MIT license, 1M tokenów kontekstu, ~1/5 kosztu Claude Opus 4.8. ZCode - własne IDE/harness od Z.ai. <span class="todo-marker">[TODO-VERIFY: dostępność przez OpenRouter]</span></p>
         <p style="margin-top:.4rem"><span class="badge">Eksperymenty</span></p>
       </div>
     </div>
@@ -911,7 +978,7 @@ cat error.log | claude -p "wyjaśnij błąd"</div>
     <div class="cards">
       <div class="card"><div class="card-title">Okno kontekstu</div>
         <p>Ile agent może pamiętać na raz w jednej sesji. Im większe okno, tym więcej plików i historii mieści się.</p>
-        <p style="margin-top:.3rem;font-size:.85rem"><span class="todo-marker">[TODO-VERIFY: aktualny rozmiar okna kontekstu dla poszczególnych modeli]</span></p>
+        <p style="margin-top:.3rem;font-size:.85rem">GLM-5.2: 1M tokenów (potwierdzone). <span class="todo-marker">[TODO-VERIFY: okno kontekstu dla pozostałych modeli]</span></p>
       </div>
       <div class="card amber"><div class="card-title">Kompresja (<span class="code-inline">/compact</span>)</div>
         <p>Streszcza historię sesji. Zachowuje kluczowe decyzje i pliki, odrzuca detale rozmowy. Przedłuża żywotność sesji.</p>
