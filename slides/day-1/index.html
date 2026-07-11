@@ -1058,7 +1058,7 @@ cat error.log | claude -p "wyjaśnij błąd"</div>
   <div class="slide-body">
     <div class="kicker">Moduł 1.2 | Modele</div>
     <h2>LMArena: sprawdzamy modele na żywo</h2>
-    <p class="subtitle"><a href="https://lmarena.ai">lmarena.ai</a> - ranking modeli oparty na głosach ludzi, nie na benchmarkach</p>
+    <p class="subtitle"><a href="https://lmarena.ai">lmarena.ai</a> (po rebrandingu: arena.ai) - ranking modeli oparty na głosach ludzi, nie na benchmarkach</p>
     <div class="cards">
       <div class="card ok"><div class="card-title">Leaderboard i Elo</div>
         <p>Modele mają ranking <strong>Elo</strong> jak szachiści - z milionów anonimowych porównań par odpowiedzi. Osobne kategorie: text, coding, webdev, vision.</p>
@@ -1910,7 +1910,7 @@ document.getElementById('bb-x').onclick=()=>document.getElementById('breakbar').
 function tick(){
  const now=new Date();
  const hm=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
- document.getElementById('clock').textContent='clock '+hm;
+ document.getElementById('clock').textContent=hm;
  const mins=now.getHours()*60+now.getMinutes();
  BREAKS.forEach(b=>{
   if(hm>=b[0]&&!fired.has(b[0])){
