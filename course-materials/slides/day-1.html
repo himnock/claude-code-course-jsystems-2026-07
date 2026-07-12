@@ -639,6 +639,8 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
       <div>
         <h3 class="danger">Ryzyka</h3>
         <ul class="feature-list cross">
+          <li><strong>Więcej bugów i rework</strong> - kod powstaje szybciej, ale badania notują więcej defektów i poprawek na produkcji, co zjada zyski z prędkości</li>
+          <li><strong>Więcej kodu &ne; więcej wartości</strong> - generujemy więcej, rośnie dług techniczny, legacy i koszt utrzymania</li>
           <li><strong>Halucynacje</strong> - agent zmyśla API, funkcje, biblioteki, które nie istnieją</li>
           <li><strong>Context rot</strong> - w długich sesjach agent traci kontekst, gubi wymagania</li>
           <li><strong>Koszty</strong> - tokeny, wywołania API, mogą rosnąć niekontrolowanie</li>
@@ -648,7 +650,14 @@ hr.sep{border:none;border-top:1px solid var(--muted);opacity:.2;margin:1rem 0}
       </div>
     </div>
     <div class="note-box"><strong>Mitygacja:</strong> weryfikacja, testy, code review, świadome zarządzanie kontekstem. O tym cały kurs.</div>
-    <div class="note-box" style="margin-top:.5rem"><strong>Co mówią badania:</strong> krzywa J - produktywność potrafi spaść na 1-2 miesiące, gdy uczysz się nowego workflow (dane głównie z 2025; dziś modele są dużo lepsze). Zanik „pamięci mięśniowej" do ręcznego kodu jest realny - ale czy przy generowaniu kodu musimy jeszcze pisać wszystko ręcznie? Warto mierzyć własne ROI. Źródła: <a href="https://www.youtube.com/watch?v=JvosMkuNxF8">Stanford (100k+ programistów)</a>, <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR 2025</a>.</div>
+    <div class="note-box" style="margin-top:.5rem"><strong>Co mówią badania:</strong>
+      <ul class="feature-list" style="margin-top:.3rem;font-size:.85rem">
+        <li><strong>Krzywa J</strong> - produktywność spada na 1-2 miesiące przy nauce nowego workflow (dane głównie z 2025; dziś modele dużo lepsze)</li>
+        <li><strong>Zanik pamięci mięśniowej</strong> do ręcznego kodu jest realny - ale czy przy generowaniu musimy jeszcze pisać wszystko ręcznie?</li>
+        <li><strong>Mierz własne ROI:</strong> velocity, liczba bugów, poprawki i komentarze w code review</li>
+        <li><strong>Źródła:</strong> <a href="https://www.youtube.com/watch?v=JvosMkuNxF8">Stanford (100k+ dev)</a> &middot; <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">METR 2025</a> &middot; <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5842302">SSRN: ukryte koszty GenAI</a> &middot; <a href="https://arxiv.org/abs/2509.19708">arXiv 2025 (Indie)</a></li>
+      </ul>
+    </div>
   </div>
   <div class="slide-footer">JSystems | Claude Code - od zera do zespołu agentów AI</div>
 </section>
