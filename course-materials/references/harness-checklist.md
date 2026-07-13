@@ -1,8 +1,9 @@
 # Harness Checklist - co gdzie umieszczać w konfiguracji agenta
 
 Praktyczny przewodnik: AGENTS.md vs Skills vs Sub-Agents vs Rules vs Memory
-vs PRD/ADR vs Plan. Dla zespołów pracujących z Claude Code, Codex, Gemini CLI
-i innymi agentami zgodnymi z konwencjami AGENTS.md / SKILL.md.
+vs MCP vs PRD/ADR vs Plan. Dla zespołów pracujących z Claude Code, OpenCode,
+Codex, Gemini CLI i innymi agentami zgodnymi z konwencjami AGENTS.md /
+SKILL.md. Odpowiedniki OpenCode (w tym self-hosted modele): sekcje 9 i 10.
 
 ---
 
@@ -85,8 +86,9 @@ permissions/hooks. Markdown to prośba, settings to prawo.
 **Co to jest:** katalog z plikiem SKILL.md (+ opcjonalne skrypty i zasoby),
 opisujący procedurę. Ładowany do kontekstu TYLKO gdy pasuje do zadania lub
 gdy użytkownik wywoła go jawnie (`/nazwa`). Konwencja działa w wielu
-narzędziach (Claude Code, Codex, Gemini). Dawne "commands" w Claude Code
-zostały scalone ze skills.
+narzędziach (Claude Code, OpenCode, Codex, Gemini). Dawne "commands" w Claude
+Code zostały scalone ze skills; w OpenCode custom commands to nadal osobny,
+prostszy byt (szablony promptów) - patrz sekcja 10.
 
 **Co tu umieszczać (checklist):**
 - [ ] Procedury powtarzane w wielu sesjach/repo ("jak robimy security review")
@@ -162,16 +164,23 @@ to AGENTS.md albo docs w repo.
 
 ---
 
-## 7) PRD + ADR - pamięć produktu i architektury
+## 7) PRD + ADR + Design Guidelines - pamięć produktu i architektury
 
 **Co to jest:** dokumenty w repo (`docs/`), czytane przez agenta na żądanie.
+Pisane **dla ludzi I dla agentów** - ten sam dokument służy zespołowi jako
+źródło prawdy i agentowi jako kontekst.
 PRD: co budujemy i po co (problem, użytkownik, zakres, kryteria akceptacji).
 ADR: krótki zapis decyzji architektonicznej z alternatywami, które odrzucono.
+Design Guidelines: system projektowy - tokeny (kolory, typografia, spacing),
+komponenty, ton komunikacji - żeby agent generował spójne UI, a nie
+"wariację na temat" przy każdej sesji.
 
 **Co tu umieszczać (checklist):**
 - [ ] PRD: problem, persona, zakres MVP, kryteria akceptacji, co POZA zakresem
 - [ ] ADR: kontekst -> decyzja -> konsekwencje -> odrzucone alternatywy
 - [ ] Jeden ADR = jedna decyzja (krótki; 1 strona max)
+- [ ] Design Guidelines: tokeny + zasady użycia komponentów (np.
+      `docs/design-guidelines.md`); wskaż go agentowi przy każdej pracy nad UI
 
 **Dlaczego to element harnessu:** agent w nowej sesji nie pamięta, DLACZEGO
 kod wygląda tak, a nie inaczej. Bez ADR "naprawi" Wam świadomą decyzję.
@@ -187,6 +196,8 @@ implementacji zmiennych w czasie (to kod i testy).
 **Co to jest:** plan konkretnego zadania: kolejność kroków, pliki do zmiany,
 testy, checkpointy. W Claude Code: plan mode (agent najpierw bada i proponuje
 plan, dopiero po akceptacji edytuje). Może być też plikiem `plan.md` / todo.
+W odróżnieniu od PRD/ADR (dla ludzi i agentów, trwałe) plan jest **tylko dla
+agentów i jednorazowy** - dokładne rozpisanie zadań na jedno wykonanie.
 
 **Co tu umieszczać (checklist):**
 - [ ] Kroki w kolejności, z plikami i testami per krok
@@ -203,6 +214,72 @@ potrzebuje planu; refactoring 40 plików bez planu to hazard.
 
 ---
 
+## 9) MCP - zewnętrzne narzędzia i dane dla agenta
+
+**Co to jest:** Model Context Protocol - standard podłączania zewnętrznych
+narzędzi (Jira, baza danych, przeglądarka, dokumentacja bibliotek) jako
+narzędzi agenta. Serwer MCP działa lokalnie (stdio) albo zdalnie (HTTP)
+i rozszerza możliwości agenta bez pisania własnych integracji.
+
+**Gdzie konfigurować:**
+- Claude Code: `.mcp.json` w katalogu głównym repo (zespołowe, commitowane)
+  lub konfiguracja osobista (`claude mcp add`)
+- OpenCode: klucz `"mcp"` w `opencode.json` (projektowym lub globalnym)
+
+**Co tu umieszczać (checklist):**
+- [ ] Serwer dokumentacji (np. Context7) - aktualne docs bibliotek na żądanie
+- [ ] Integracje firmowe: Jira/Confluence (Atlassian MCP), GitLab/Bitbucket
+- [ ] Narzędzia przeglądarkowe (Playwright MCP) - weryfikacja UI, testy E2E
+- [ ] `"enabled": false` dla ciężkich/rzadko używanych serwerów - włączanie
+      na żądanie (przykład: JetBrains MCP w `opencode-example/`)
+
+**Czego NIE robić:**
+- Nie włączaj wszystkich serwerów na stałe: każdy serwer MCP wstrzykuje
+  opisy swoich narzędzi do kontekstu KAŻDEJ sesji (płacisz jak za długi
+  AGENTS.md, a model gorzej wybiera narzędzia)
+- Nie wpisuj sekretów wprost do konfiguracji - używaj zmiennych środowiskowych
+- Nie podłączaj serwerów MCP z niezaufanych źródeł (opisy narzędzi to wektor
+  prompt injection; serwer widzi też dane, które agent mu przekazuje)
+
+**Różnice schematów** (ta sama idea, inna składnia):
+
+| | Claude Code `.mcp.json` | OpenCode `opencode.json` |
+|---|---|---|
+| serwer stdio | `"type": "stdio"`, `command` (string) + `args` | `"type": "local"`, `command` (tablica) |
+| zmienne środowiskowe | `"env"` | `"environment"` |
+| serwer HTTP | `"type": "http"` | `"type": "remote"` + `"url"` |
+| wyłączenie | `"enabled": false` | `"enabled": false` |
+
+Przykłady z komentarzami w tym repo: `course-materials/opencode-example/opencode.jsonc`
+oraz `.mcp.json` w katalogu głównym.
+
+---
+
+## 10) OpenCode - mapa odpowiedników
+
+Cały ten dokument stosuje się też do OpenCode (również z modelami
+self-hosted). Różnią się głównie składnia i lokalizacje plików:
+
+| Element harnessu | Claude Code | OpenCode |
+|---|---|---|
+| Instrukcje repo | `AGENTS.md` / `CLAUDE.md` (import `@AGENTS.md`) | `AGENTS.md` natywnie (czyta też `CLAUDE.md`); dodatkowe pliki przez `"instructions"` w `opencode.json` |
+| Instrukcje osobiste globalne | `~/.claude/CLAUDE.md` | `~/.config/opencode/AGENTS.md` |
+| Settings | `.claude/settings.json` | `opencode.json` w repo / `~/.config/opencode/opencode.json` (JSONC, kolejność: globalny -> projektowy) |
+| Permissions | `permissions` (listy allow/deny) | `"permission"`: `edit` / `bash` / `webfetch` = `"allow"` / `"ask"` / `"deny"` (także per agent) |
+| Skills | `.claude/skills/` lub `.agents/skills/` | `.opencode/skills/`; czyta TEŻ `.claude/skills/` i `.agents/skills/` - te same skille działają w obu narzędziach |
+| Custom commands | scalone ze skills (`/nazwa`) | osobny byt: `.opencode/commands/*.md` z frontmatter (`description`, `agent`, `model`) i szablonem (`$ARGUMENTS`, `$1..$n`, `@plik`) |
+| Sub-agents | `.claude/agents/*.md` | `.opencode/agents/*.md`, frontmatter `mode: primary/subagent`; wywołanie `@nazwa` lub automatycznie przez Task tool |
+| Hooks | `hooks` w `settings.json` | pluginy (custom tools, hooks, integracje) |
+| Memory | katalog memory + MEMORY.md, skrót `#` | brak automatycznej pamięci - trwałe fakty zapisuj świadomie w `AGENTS.md` |
+| MCP | `.mcp.json` | `"mcp"` w `opencode.json` (sekcja 9) |
+| Model domyślny | `settings.json` / `/model` | `"model": "<provider>/<model-id>"` + opcjonalnie `"small_model"` |
+
+**Modele lokalne / self-hosted w OpenCode:** blok `"provider"` z endpointem
+OpenAI-compatible (Ollama, vLLM itp.) - kompletny przykład z komentarzami:
+`course-materials/opencode-example/opencode.jsonc`.
+
+---
+
 ## Tabela decyzyjna (ściąga)
 
 | Informacja | Trwałość | Miejsce |
@@ -216,12 +293,15 @@ potrzebuje planu; refactoring 40 plików bez planu to hazard.
 | "Wolę pnpm, odpowiadaj po polsku" | stała, osobista | memory / ~/.claude/CLAUDE.md |
 | "Budujemy eksport do JSON, bo..." | do końca feature'a | PRD |
 | "Pieniądze w decimal cents, nie float" | stała decyzja | ADR |
+| "Kolory, typografia, zasady komponentów" | stała, całe UI | Design Guidelines |
 | "Krok 1: test, krok 2: implementacja" | jedno zadanie | plan / plan mode |
 | "Odrzucam sugestię X w tym diffie" | jeden PR | komentarz PR |
+| "Aktualna dokumentacja biblioteki Y" | na żądanie | MCP (np. Context7) |
+| "Szablon promptu z parametrami" | stała, powtarzalna | skill (Claude Code) / custom command (OpenCode) |
 
 ---
 
-## Top 7 antywzorców
+## Top 8 antywzorców
 
 1. **Wszystko do AGENTS.md** - 500 linii, których model nie czyta uważnie.
 2. **Sekrety w plikach instrukcji** - trafią do logów i odpowiedzi.
@@ -232,6 +312,8 @@ potrzebuje planu; refactoring 40 plików bez planu to hazard.
 6. **Instrukcja markdown zamiast permissions** - "nie kasuj bazy" musi być
    regułą harnessu, nie prośbą.
 7. **Sub-agenci na wspólnych plikach** - konflikty edycji; izoluj worktree.
+8. **Wszystkie serwery MCP włączone na stałe** - opisy narzędzi zjadają
+   kontekst każdej sesji; ciężkie serwery trzymaj z `"enabled": false`.
 
 ---
 
@@ -252,5 +334,6 @@ potrzebuje planu; refactoring 40 plików bez planu to hazard.
 4. Sub-agent researcher do mapowania modułów przed pierwszą zmianą
 5. Pierwsze zmiany wyłącznie przez plan mode + małe PR-y
 
-Pełne checklisty greenfield/brownfield: zostaną dodane do tego repo
-przed dniem 1 (TODO) - wersje robocze w repo ćwiczeniowym trenera.
+Pełne wersje krok po kroku (z odpowiednikami OpenCode):
+[greenfield-checklist.md](greenfield-checklist.md) i
+[brownfield-checklist.md](brownfield-checklist.md) w tym katalogu.
