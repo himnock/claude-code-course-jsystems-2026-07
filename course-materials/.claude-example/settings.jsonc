@@ -104,7 +104,10 @@
 
       // ── Protect secrets
       "Read(.env)",
-      "Read(.env.*)",
+      "Read(.env.local)",
+      "Read(.env.dev)",
+      "Read(.env.prod)",
+      "Read(.env.test)",
       "Read(**/.env)",
       "Read(**/secrets/**)"
     ]
